@@ -1,0 +1,35 @@
+version: '3.6'
+services:
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+        - 1433:1433
+    environment: #Complete list of env variables: https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-environment-variables?view=sql-server-2017
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password.
+      - MSSQL_PID=Developer
+      - MSSQL_COLLATION=Latin1_General_CI_AS
+    volumes:
+      - /d/docker/mssql/data/:/var/opt/mssql/data
+      - /d/docker/mssql/backups/:/var/opt/mssql/backups
+# volumes:
+  # sqlserver2017data:
+  # sqlserver2017backup:      
+
+# Have tried both with and without this additional configuration values
+# - MSSQL_DATA_DIR: /var/opt/mssql/data
+# - MSSQL_LOG_DIR: /var/opt/mssql/logs
+# - MSSQL_BACKUP_DIR: /var/opt/mssql/backups
+# - MSSQL_MEMORY_LIMIT_MB: 4096
+# - MSSQL_AGENT_ENABLED: "true"
+# - MSSQL_TCP_PORT: 1433
+# - MSSQL_COLLATION: Latin1_General_CI_AS
+# - MSSQL_COLLATION: SQL_Latin1_General_CP1_CI_AS      
+#    Volumes:
+# - c:\sqlserver\2017\data:/var/opt/mssql/data
+# - c:\sqlserver\2017\logs:/var/opt/mssql/logs
+# - c:\sqlserver\2017\backups:/var/opt/mssql/backups
+# 
+# - /d/docker/mssql/data:/var/opt/mssql/data
+#
