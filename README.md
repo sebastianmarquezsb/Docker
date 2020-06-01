@@ -19,3 +19,8 @@ Conexion desde SSMS
 Server = localhost,1433
 Username = sa
 Password = Sample123$
+
+
+## Prune unused Docker objects
+### Prune images🔗
+docker image prune -a --filter "until=24h"
