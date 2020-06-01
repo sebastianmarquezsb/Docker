@@ -32,8 +32,12 @@ Microsoft SQL Server 2017 (RTM-CU20) (KB4541283) - 14.0.3294.2 (X64)
 	Developer Edition (64-bit) on Linux (Ubuntu 16.04.6 LTS)
 (1 row affected)
 ```
+## Conexion a Bases de Datos con SQL Server Management
+![mssql](https://github.com/sebastianmarquezsb/Docker/blob/master/mssql.PNG)
 
 
 ## Prune unused Docker objects
 ## Prune images🔗
 docker image prune -a --filter "until=24h"
+
+
