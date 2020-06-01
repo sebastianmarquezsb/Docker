@@ -7,6 +7,13 @@
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Sample123$" -p 1433:1433 --name sql1 -v d:\Docker:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2017-latest
 ```
 
+```powershell
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Sample123$" -p 1433:1433 --rm --name MSSQL -v /d/Docker/MSSQL/data:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server
+:2017-latest
+
+```
+
+
 #### Salida de Ejecucion de PowerShell
 ```powershell
 PS C:\Windows\system32> docker ps
