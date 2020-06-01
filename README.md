@@ -23,6 +23,16 @@ Server = localhost,1433
 Username = sa
 Password = Sample123$
 
+```sql
+SELECT @@VERSION
+
+Microsoft SQL Server 2017 (RTM-CU20) (KB4541283) - 14.0.3294.2 (X64) 
+	Mar 13 2020 14:53:45 
+	Copyright (C) 2017 Microsoft Corporation
+	Developer Edition (64-bit) on Linux (Ubuntu 16.04.6 LTS)
+(1 row affected)
+```
+
 
 ## Prune unused Docker objects
 ## Prune images🔗
