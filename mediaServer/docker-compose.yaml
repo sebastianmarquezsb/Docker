@@ -1,0 +1,91 @@
+version: "3"
+services:
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    depends_on:
+      - nzbget
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Santiago
+      - UMASK_SET=022 #optional
+    volumes:
+      - /d/docker/sonarr/config:/config
+      - /d/storage/tv:/tv
+      - /d/docker/nzbget/downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: always
+  nzbget:
+    image: linuxserver/nzbget
+    container_name: nzbget
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Santiago
+    volumes:
+      - /d/docker/nzbget/config:/config
+      - /d/docker/nzbget/downloads:/downloads
+    ports:
+      - 6789:6789
+    restart: always
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - VERSION=docker
+    volumes:
+      - /docker/plex/config:/config
+      - /storage/tv:/data/tvshows
+      - /storage/movies:/data/movies
+      - /docker/plex/transcode:/transcode
+    restart: always
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Santiago
+      - UMASK_SET=022
+      - WEBUI_PORT=8080
+    volumes:
+      - /docker/qbittorrent/config:/config
+      - /docker/qbittorrent/downloads:/downloads
+      - /storage/tv:/tv
+      - /storage/movies:/movies
+    ports:
+      - 31321:31321
+      - 31321:31321/udp
+      - 8080:8080
+    restart: always
+  samba:
+    image: jenserat/samba-publicshare
+    tty: true
+    environment:
+      - PUID=1000
+      - PGID=1001
+    ports:
+      - 445:445
+      - 137:137
+      - 138:138
+      - 139:139
+    volumes:
+      - /storage:/srv
+  nginx:
+    image: linuxserver/nginx
+    container_name: nginx
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Santiago
+    volumes:
+      - /docker/nginx/config:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
