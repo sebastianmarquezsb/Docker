@@ -39,10 +39,10 @@ services:
       - PGID=1001
       - VERSION=docker
     volumes:
-      - /docker/plex/config:/config
-      - /storage/tv:/data/tvshows
-      - /storage/movies:/data/movies
-      - /docker/plex/transcode:/transcode
+      - /d/docker/plex/config:/config
+      - /d/storage/tv:/data/tvshows
+      - /d/storage/movies:/data/movies
+      - /d/docker/plex/transcode:/transcode
     restart: always
   qbittorrent:
     image: linuxserver/qbittorrent
@@ -54,10 +54,10 @@ services:
       - UMASK_SET=022
       - WEBUI_PORT=8080
     volumes:
-      - /docker/qbittorrent/config:/config
-      - /docker/qbittorrent/downloads:/downloads
-      - /storage/tv:/tv
-      - /storage/movies:/movies
+      - /d/docker/qbittorrent/config:/config
+      - /d/docker/qbittorrent/downloads:/downloads
+      - /d/storage/tv:/tv
+      - /d/storage/movies:/movies
     ports:
       - 31321:31321
       - 31321:31321/udp
@@ -75,7 +75,7 @@ services:
       - 138:138
       - 139:139
     volumes:
-      - /storage:/srv
+      - /d/storage:/srv
   nginx:
     image: linuxserver/nginx
     container_name: nginx
@@ -84,7 +84,7 @@ services:
       - PGID=1001
       - TZ=America/Santiago
     volumes:
-      - /docker/nginx/config:/config
+      - /d/docker/nginx/config:/config
     ports:
       - 80:80
       - 443:443
